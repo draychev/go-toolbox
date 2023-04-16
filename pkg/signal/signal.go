@@ -1,4 +1,4 @@
-package signals
+package signal
 
 import (
 	"os"
@@ -8,7 +8,7 @@ import (
 
 var exitSignals = []os.Signal{os.Interrupt, syscall.SIGTERM} // SIGTERM is POSIX specific
 
-// RegisterExitHandlers returns a stop channel to wait on exit signals
+// RegisterExitHandlers returns a stop channel to wait on exit signal
 func RegisterExitHandlers(shutdownFuncs ...func()) (stop chan struct{}) {
 	stop = make(chan struct{})
 	s := make(chan os.Signal, len(exitSignals))
@@ -32,7 +32,7 @@ func RegisterExitHandlers(shutdownFuncs ...func()) (stop chan struct{}) {
 /* Sample Usage:
     _, cancel := context.WithCancel(context.Background())
     defer cancel()
-    stop := signals.RegisterExitHandlers(cancel)
+    stop := signal.RegisterExitHandlers(cancel)
 ...
 	<-stop
 	cancel()
