@@ -1,4 +1,4 @@
-// login is a package to make it easy
+// login is a package to make an easy login screen/flow
 package login
 
 /** Derek Sivers has a very simple login page
@@ -13,15 +13,18 @@ import (
 	"strings"
 )
 
-type Name string
-type EmailAddress string
-type Link string
-type EmailBody string
-type Token string
-
+// LoginFacility is the interface that defines the basics...
 type LoginFacility interface {
+	// RenderLogin Page is a form - asks the user for Name and Emaile
+	// This should be used by a GET Web Handler
 	RenderLoginPage() string
+
+	// MakeToeknAndEmailLink sends a link to the name + email
+	// This should be used by a POST Web Handler
 	MakeTokenAndEmailLink(Name, EmailAddress, EmailDispatch)
+
+	// ValidateLoginLink checks if the link clicked has valid token
+	// This should be used in a GETT Web Handler (it starts a session)
 	ValidateLoginLink(Link) Token
 }
 
