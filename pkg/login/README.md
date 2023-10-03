@@ -1,0 +1,1 @@
+This is the simplest possible login module. It is inspired by Derek Sivers and his online bookstore. This sends an email with a token to the users email address. When the links is clicked, the token is verified, the user is logged in. The goal is to not rely on 3rd party auth providers.
